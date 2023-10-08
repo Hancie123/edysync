@@ -1,3 +1,4 @@
+import 'package:edusync/views/forgotpassword.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/textfield.dart';
@@ -13,7 +14,7 @@ class LoginView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 100),
             child: Container(
-              width: 150, 
+              width: 150,
               height: 150,
               child: Image.asset('assets/images/download.png'),
             ),
@@ -45,7 +46,14 @@ class LoginView extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Padding(
                 padding: const EdgeInsets.only(right: 20, top: 10),
-                child: Text("Forgot Password?"),
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyForgotPassword()));
+                    },
+                    child: Text("Forgot Password?")),
               )),
           Padding(
             padding: const EdgeInsets.only(top: 20),
@@ -59,20 +67,6 @@ class LoginView extends StatelessWidget {
                   ),
                 )),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 40),
-            child: Text(
-              "Don't have an account?",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          RichText(
-              text: TextSpan(
-                  text: "Sign Up",
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16)))
         ],
       ),
     );
