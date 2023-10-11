@@ -1,10 +1,15 @@
 import 'package:edusync/views/forgotpassword.dart';
+import 'package:edusync/views/home/student/dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../widgets/textfield.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  LoginView({super.key});
+
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,7 @@ class LoginView extends StatelessWidget {
             ),
           ),
           MyTextFormField(
+            controller: emailcontroller,
             labeltext: "Enter Email",
             top: 100,
             left: 20,
@@ -37,6 +43,7 @@ class LoginView extends StatelessWidget {
           ),
           MyTextFormField(
             labeltext: "Enter Password",
+            controller: passwordcontroller,
             top: 40,
             left: 20,
             right: 20,
@@ -58,12 +65,27 @@ class LoginView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+
+                  prefs.setString('email', emailcontroller.text.toString());
+                  prefs.setString(
+                      'password', passwordcontroller.text.toString());
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 18),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const StudentDashboard()));
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 )),
           ),
