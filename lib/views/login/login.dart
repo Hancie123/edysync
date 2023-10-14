@@ -1,5 +1,6 @@
 import 'package:edusync/views/forgotpassword.dart';
-import 'package:edusync/views/home/student/studentDashboard.dart';
+import 'package:edusync/views/home/student/studentNav.dart';
+import 'package:edusync/widgets/gNav.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/textfield.dart';
@@ -77,10 +78,15 @@ class LoginView extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const StudentDashboard()));
+                      Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const StudentDashboard()));
+                              builder: (context) => const StudentDashboard()),
+                          (route) => false);
                     },
                     child: const Text(
                       "Login",

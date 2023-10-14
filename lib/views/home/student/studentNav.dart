@@ -1,14 +1,30 @@
+import 'package:edusync/views/home/student/dashboard.dart';
+import 'package:edusync/views/home/student/report.dart';
+import 'package:edusync/views/home/student/studentProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class StudentDashboard extends StatelessWidget {
+class StudentDashboard extends StatefulWidget {
   const StudentDashboard({super.key});
 
+  @override
+  State<StudentDashboard> createState() => _StudentDashboardState();
+}
+
+class _StudentDashboardState extends State<StudentDashboard> {
+  int _currentIndex = 0;
+
+  final List<Widget> _pages = [
+    MyStudentDashboard(),
+    MyReport(),
+    StudentProfile(),
+    StudentProfile()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Home")),
-      body: Column(),
+      body: _pages[_currentIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -23,6 +39,13 @@ class StudentDashboard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
+              selectedIndex: _currentIndex,
+              onTabChange: (value) {
+                setState(() {
+                  _currentIndex = value;
+                });
+              },
+
               rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
               gap: 8,

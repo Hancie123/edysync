@@ -5,8 +5,16 @@ class StudentProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(color: Colors.blue),
+            height: 100,
+            width: MediaQuery.of(context).size.width,
+          ),
+        ],
+      ),
     );
   }
 }
