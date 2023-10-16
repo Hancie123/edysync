@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyReport extends StatelessWidget {
@@ -14,7 +15,7 @@ class MyReport extends StatelessWidget {
             title: Text("Student Report"),
             bottom: TabBar(labelColor: Colors.black, tabs: [
               Tab(
-                text: "Text Report",
+                text: "Test Report",
               ),
               Tab(
                 text: "Exam Report",
@@ -22,9 +23,35 @@ class MyReport extends StatelessWidget {
             ]),
           ),
           body: TabBarView(children: [
-            Container(
-              color: Colors.green,
-            ),
+            ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                        trailing: IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.folder_open_rounded),
+                          color: Colors.white,
+                        ),
+                        title: Text(
+                          "First Sem " + index.toString(),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        splashColor: Colors.black,
+                        onTap: () {},
+                      ),
+                    ),
+                  );
+                }),
             Container(
               color: Colors.red,
             )
