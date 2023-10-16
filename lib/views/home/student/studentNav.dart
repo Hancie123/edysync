@@ -61,8 +61,8 @@ class _StudentDashboardState extends State<StudentDashboard> {
                   text: 'Home',
                 ),
                 GButton(
-                  icon: Icons.person,
-                  text: 'Likes',
+                  icon: Icons.report,
+                  text: 'Report',
                 ),
                 GButton(
                   icon: Icons.search,
