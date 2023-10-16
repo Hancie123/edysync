@@ -1,6 +1,8 @@
+import 'package:edusync/views/home/student/announcement.dart';
 import 'package:edusync/views/home/student/dashboard.dart';
 import 'package:edusync/views/home/student/report.dart';
 import 'package:edusync/views/home/student/studentProfile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -16,14 +18,13 @@ class _StudentDashboardState extends State<StudentDashboard> {
 
   final List<Widget> _pages = [
     MyStudentDashboard(),
+    StudentAnnouncement(),
     MyReport(),
-    StudentProfile(),
     StudentProfile()
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home")),
       body: _pages[_currentIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -61,12 +62,12 @@ class _StudentDashboardState extends State<StudentDashboard> {
                   text: 'Home',
                 ),
                 GButton(
-                  icon: Icons.person,
-                  text: 'Likes',
+                  icon: Icons.announcement,
+                  text: 'Announce',
                 ),
                 GButton(
-                  icon: Icons.search,
-                  text: 'Search',
+                  icon: Icons.report,
+                  text: 'Report',
                 ),
                 GButton(
                   icon: Icons.person_2,
