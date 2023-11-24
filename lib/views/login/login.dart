@@ -109,6 +109,7 @@ class LoginView extends StatelessWidget {
             left: 20,
             right: 20,
             securetext: true,
+            
           ),
           Align(
               alignment: Alignment.centerRight,
