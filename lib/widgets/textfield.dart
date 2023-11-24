@@ -9,6 +9,7 @@ class MyTextFormField extends StatelessWidget {
     this.top,
     this.texttype,
     this.securetext,
+    this.controller,
   });
   final String labeltext;
   final double? top;
@@ -16,6 +17,7 @@ class MyTextFormField extends StatelessWidget {
   final double? left;
   final TextInputType? texttype;
   final bool? securetext;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +25,9 @@ class MyTextFormField extends StatelessWidget {
       padding:
           EdgeInsets.only(top: top ?? 0, left: left ?? 0, right: right ?? 0),
       child: TextFormField(
+        controller: controller,
         keyboardType: texttype,
-        obscureText: securetext??false,
+        obscureText: securetext ?? false,
         decoration: InputDecoration(
             label: Text(labeltext),
             border:
