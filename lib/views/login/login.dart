@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:js';
 
 import 'package:edusync/views/forgotpassword.dart';
 import 'package:edusync/views/home/student/studentNav.dart';
