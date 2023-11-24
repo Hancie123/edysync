@@ -1,18 +1,78 @@
+import 'dart:convert';
+import 'dart:js';
+
 import 'package:edusync/views/forgotpassword.dart';
 import 'package:edusync/views/home/student/studentNav.dart';
 import 'package:edusync/widgets/gNav.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import '../../widgets/textfield.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
-
-  // TextEditingController emailcontroller = TextEditingController();
-  // TextEditingController passwordcontroller = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    void login(String email, password) async {
+      try {
+        Response response = await post(
+            Uri.parse('https://edusync.shrawanmaharjan.com.np/api/login'),
+            body: {'email': email, 'password': password});
+
+        if (response.statusCode == 200) {
+          Map<String, dynamic> jsonResponse = json.decode(response.body);
+          String userName = jsonResponse['data']['data']['name'];
+
+          // Show welcome message
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Welcome!'),
+                content: Text('Hello, $userName! Welcome to EduSync.'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Close the welcome dialog
+                      // Navigate to StudentDashboard
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const StudentDashboard()),
+                      );
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Login Failed'),
+                content: Text('Incorrect email or password. Please try again.'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      } catch (e) {
+        print(e.toString());
+      }
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -37,6 +97,7 @@ class LoginView extends StatelessWidget {
           MyTextFormField(
             // controller: emailcontroller,
             labeltext: "Enter Email",
+            controller: emailController,
             top: 100,
             left: 20,
             right: 20,
@@ -44,7 +105,7 @@ class LoginView extends StatelessWidget {
           ),
           MyTextFormField(
             labeltext: "Enter Password",
-            // controller: passwordcontroller,
+            controller: passwordController,
             top: 40,
             left: 20,
             right: 20,
@@ -66,27 +127,22 @@ class LoginView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: ElevatedButton(
-                onPressed: () async {
-                  // final SharedPreferences prefs =
-                  //     await SharedPreferences.getInstance();
-
-                  // prefs.setString('email', emailcontroller.text.toString());
-                  // prefs.setString(
-                  //     'password', passwordcontroller.text.toString());
-                },
+                onPressed: () {},
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: GestureDetector(
                     onTap: () {
+                      login(emailController.text.toString(),
+                          passwordController.text.toString());
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
                       //         builder: (context) => const StudentDashboard()));
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const StudentDashboard()),
-                          (route) => false);
+                      // Navigator.pushAndRemoveUntil(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const StudentDashboard()),
+                      //     (route) => false);
                     },
                     child: const Text(
                       "Login",
