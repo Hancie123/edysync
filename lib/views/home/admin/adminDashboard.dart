@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:edusync/views/home/admin/adminSideNav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -12,6 +14,7 @@ class adminDashboard extends StatelessWidget {
       appBar: AppBar(
         title: Text('Admin Dashboard'),
         elevation: 0,
+        backgroundColor: Colors.blueAccent,
       ),
       body: Column(
         children: [
@@ -20,7 +23,7 @@ class adminDashboard extends StatelessWidget {
             child: Container(
               child: ListTile(
                 leading: Icon(
-                  Icons.wechat_outlined,
+                  Icons.person,
                   color: Colors.white,
                 ),
                 title: Text(
@@ -36,33 +39,136 @@ class adminDashboard extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Card(
-                          margin: EdgeInsets.all(30),
-                          child: Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Hello",
-                                  style: TextStyle(color: Colors.black),
-                                )
-                              ],
+          SizedBox(
+            height: 100,
+          ),
+          Center(
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Card(
+                              margin: EdgeInsets.all(10),
+                              child: Padding(
+                                padding: const EdgeInsets.all(30.0),
+                                child: Column(
+                                  children: [
+                                    Icon(Icons.people),
+                                    Text(
+                                      "Students",
+                                      style: TextStyle(color: Colors.black),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                        Text("hello")
-                      ],
-                    )
-                  ],
-                )
-              ],
+                          Expanded(
+                            child: Card(
+                              margin: EdgeInsets.all(10),
+                              child: Padding(
+                                padding: const EdgeInsets.all(30.0),
+                                child: Column(
+                                  children: [
+                                    Icon(Icons.person_3),
+                                    Text(
+                                      "Teachers",
+                                      style: TextStyle(color: Colors.black),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Card(
+                              margin: EdgeInsets.all(10),
+                              child: Padding(
+                                padding: const EdgeInsets.all(30.0),
+                                child: Column(
+                                  children: [
+                                    Icon(Icons.text_snippet_rounded),
+                                    Text(
+                                      "Exams",
+                                      style: TextStyle(color: Colors.black),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Card(
+                              margin: EdgeInsets.all(10),
+                              child: Padding(
+                                padding: const EdgeInsets.all(30.0),
+                                child: Column(
+                                  children: [
+                                    Icon(Icons.event),
+                                    Text(
+                                      "Events",
+                                      style: TextStyle(color: Colors.black),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Card(
+                                margin: EdgeInsets.all(10),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(30.0),
+                                  child: Column(
+                                    children: [
+                                      Icon(Icons.class_),
+                                      Text(
+                                        "Classes",
+                                        style: TextStyle(color: Colors.black),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                                onTap: () {},
+                                child: Card(
+                                  margin: EdgeInsets.all(10),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(30.0),
+                                    child: Column(
+                                      children: [
+                                        Icon(Icons.payments_outlined),
+                                        Text(
+                                          "Bills",
+                                          style: TextStyle(color: Colors.black),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           )
         ],
