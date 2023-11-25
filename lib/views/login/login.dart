@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:edusync/views/forgotpassword.dart';
+import 'package:edusync/views/home/admin/adminDashboard.dart';
 import 'package:edusync/views/home/student/studentNav.dart';
+import 'package:edusync/views/home/teacher/teacherDashboard.dart';
 import 'package:edusync/widgets/gNav.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -23,6 +25,7 @@ class LoginView extends StatelessWidget {
         if (response.statusCode == 200) {
           Map<String, dynamic> jsonResponse = json.decode(response.body);
           String userName = jsonResponse['data']['data']['name'];
+          String userStatus = jsonResponse['data']['data']['status'];
 
           // Show welcome message
           showDialog(
@@ -35,12 +38,28 @@ class LoginView extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close the welcome dialog
-                      // Navigate to StudentDashboard
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const StudentDashboard()),
-                      );
+
+                      // Conditionally navigate based on user status
+                      if (userStatus == 'admin') {
+                        // Navigate to TeacherDashboard
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => adminDashboard(),
+                          ),
+                        );
+                      } else if (userStatus == 'student') {
+                        // Navigate to StudentDashboard
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const StudentDashboard(),
+                          ),
+                        );
+                      } else {
+                        // Handle other statuses as needed
+                        print('Unknown user status: $userStatus');
+                      }
                     },
                     child: Text('OK'),
                   ),
@@ -109,7 +128,6 @@ class LoginView extends StatelessWidget {
             left: 20,
             right: 20,
             securetext: true,
-            
           ),
           Align(
               alignment: Alignment.centerRight,
