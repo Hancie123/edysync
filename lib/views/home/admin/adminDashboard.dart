@@ -1,6 +1,5 @@
-import 'dart:ffi';
-
 import 'package:edusync/views/home/admin/adminSideNav.dart';
+import 'package:edusync/views/home/admin/createStudent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
@@ -53,18 +52,24 @@ class adminDashboard extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Card(
-                              margin: EdgeInsets.all(10),
-                              child: Padding(
-                                padding: const EdgeInsets.all(30.0),
-                                child: Column(
-                                  children: [
-                                    Icon(Icons.people),
-                                    Text(
-                                      "Students",
-                                      style: TextStyle(color: Colors.black),
-                                    )
-                                  ],
+                            child: GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CreateStudentUI())),
+                              child: Card(
+                                margin: EdgeInsets.all(10),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(30.0),
+                                  child: Column(
+                                    children: [
+                                      Icon(Icons.people),
+                                      Text(
+                                        "Students",
+                                        style: TextStyle(color: Colors.black),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
