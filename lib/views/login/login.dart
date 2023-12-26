@@ -1,7 +1,7 @@
-
-
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+import 'package:edusync/model/loginModel.dart';
 import 'package:edusync/views/forgotpassword.dart';
 import 'package:edusync/views/home/admin/adminDashboard.dart';
 import 'package:edusync/views/home/student/studentNav.dart';
@@ -16,18 +16,18 @@ class LoginView extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  Dio dio = Dio();
+
   @override
   Widget build(BuildContext context) {
-    void login(String email, password) async {
+    Future<LoginModel?> login(String email, password) async {
       try {
-        Response response = await post(
-            Uri.parse('https://edusync.shrawanmaharjan.com.np/api/login'),
-            body: {'email': email, 'password': password});
+        var response = await dio.post('https://edusync.shrawanmaharjan.com.np/api/login', data: {'email': emailController.text.toString(), 'password': passwordController.text.toString()});
 
         if (response.statusCode == 200) {
-          Map<String, dynamic> jsonResponse = json.decode(response.body);
-          String userName = jsonResponse['data']['data']['name'];
-          String userStatus = jsonResponse['data']['data']['status'];
+          var data = LoginModel.fromMap(response.data);
+
+          var userData=data.data!.data;
 
           // Show welcome message
           showDialog(
@@ -35,22 +35,22 @@ class LoginView extends StatelessWidget {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: Text('Welcome!'),
-                content: Text('Hello, $userName! Welcome to EduSync.'),
+                content: Text('Hello, '+userData!.name!+'! Welcome to EduSync.'),
                 actions: [
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close the welcome dialog
 
                       // Conditionally navigate based on user status
-                      if (userStatus == 'admin') {
+                      if (userData!.role == 'admin') {
                         // Navigate to TeacherDashboard
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => adminDashboard(),
+                            builder: (context) => adminDashboard(loginModel: data),
                           ),
                         );
-                      } else if (userStatus == 'student') {
+                      } else if (userData!.role == 'student') {
                         // Navigate to StudentDashboard
                         Navigator.push(
                           context,
@@ -58,10 +58,7 @@ class LoginView extends StatelessWidget {
                             builder: (context) => const StudentDashboard(),
                           ),
                         );
-                      } else {
-                        // Handle other statuses as needed
-                        print('Unknown user status: $userStatus');
-                      }
+                      } 
                     },
                     child: Text('OK'),
                   ),
@@ -69,6 +66,7 @@ class LoginView extends StatelessWidget {
               );
             },
           );
+          return data;
         } else {
           showDialog(
             context: context,
@@ -89,7 +87,7 @@ class LoginView extends StatelessWidget {
           );
         }
       } catch (e) {
-        print(e.toString());
+        throw Exception(e);
       }
     }
 
@@ -137,10 +135,7 @@ class LoginView extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 20, top: 10),
                 child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MyForgotPassword()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyForgotPassword()));
                     },
                     child: const Text("Forgot Password?")),
               )),
@@ -152,8 +147,7 @@ class LoginView extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: GestureDetector(
                     onTap: () {
-                      login(emailController.text.toString(),
-                          passwordController.text.toString());
+                      login(emailController.text.toString(), passwordController.text.toString());
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
@@ -177,16 +171,12 @@ class LoginView extends StatelessWidget {
           Expanded(
             child: Container(
               width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(50))),
+              decoration: const BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.vertical(top: Radius.circular(50))),
               child: const Center(
                   child: Text(
                 "Developed By: Prajwol,\nShrawan & Samyak",
                 textAlign: TextAlign.center,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               )),
             ),
           )

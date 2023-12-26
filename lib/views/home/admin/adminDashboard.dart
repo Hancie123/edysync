@@ -1,13 +1,16 @@
+import 'package:edusync/model/loginModel.dart';
 import 'package:edusync/views/home/admin/adminSideNav.dart';
 import 'package:edusync/views/home/admin/createStudent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class adminDashboard extends StatelessWidget {
-  const adminDashboard({super.key});
+  const adminDashboard({super.key, required this.loginModel});
+  final LoginModel loginModel;
 
   @override
   Widget build(BuildContext context) {
+    var userData = loginModel.data!.data;
     return Scaffold(
       drawer: adminSideNav(),
       appBar: AppBar(
@@ -26,7 +29,7 @@ class adminDashboard extends StatelessWidget {
                   color: Colors.white,
                 ),
                 title: Text(
-                  'Welcome Admin!',
+                  'Welcome '+userData!.name!,
                   style: TextStyle(color: Colors.white),
                 ),
               ),
@@ -53,10 +56,7 @@ class adminDashboard extends StatelessWidget {
                         children: [
                           Expanded(
                             child: GestureDetector(
-                              onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CreateStudentUI())),
+                              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStudentUI())),
                               child: Card(
                                 margin: EdgeInsets.all(10),
                                 child: Padding(
