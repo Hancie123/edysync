@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class adminDashboard extends StatelessWidget {
-  const adminDashboard({super.key, required this.loginModel});
-  final LoginModel loginModel;
+  const adminDashboard({super.key, this.loginModel});
+  final LoginModel? loginModel;
 
   @override
   Widget build(BuildContext context) {
-    var userData = loginModel.data!.data;
+    var userData = loginModel?.data?.data;
+   
     return Scaffold(
       drawer: adminSideNav(),
       appBar: AppBar(
@@ -29,8 +30,8 @@ class adminDashboard extends StatelessWidget {
                   color: Colors.white,
                 ),
                 title: Text(
-                  'Welcome '+userData!.name!,
-                  style: TextStyle(color: Colors.white),
+                  'Welcome ${userData?.name??''}' ,
+                  style: TextStyle(color: const Color.fromARGB(255, 41, 39, 39)),
                 ),
               ),
               height: 80,

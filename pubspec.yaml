@@ -43,6 +43,7 @@ dependencies:
   flutter_custom_clippers: ^2.1.0
   icons_plus: ^4.0.0
   dio: ^5.4.0
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
