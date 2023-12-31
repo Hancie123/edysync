@@ -23,13 +23,7 @@ class adminSideNav extends StatelessWidget {
                   )),
             ]),
           ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Home"),
-            onTap: () {
-              Get.to(() => adminDashboard());
-            },
-          ),
+         
           ListTile(
             leading: Icon(Icons.logout),
             title: Text("Exit"),

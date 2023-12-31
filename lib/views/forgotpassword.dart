@@ -12,6 +12,7 @@ class MyForgotPassword extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Forgot Password"),
+         backgroundColor: Colors.red.shade400,
       ),
       body: Column(
         children: [
@@ -41,6 +42,7 @@ class MyForgotPassword extends StatelessWidget {
             right: 10,
           ),
           MyButton(
+            
             textlabel: "Send Email",
             top: 40,
             textbottom: 15,

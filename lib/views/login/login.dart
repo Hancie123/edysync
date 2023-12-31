@@ -142,6 +142,7 @@ class LoginView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: ElevatedButton(
+               style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.red)),
                 onPressed: () {},
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
@@ -160,7 +161,7 @@ class LoginView extends StatelessWidget {
                     },
                     child: const Text(
                       "Login",
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18,color: Colors.white),
                     ),
                   ),
                 )),
@@ -171,7 +172,7 @@ class LoginView extends StatelessWidget {
           Expanded(
             child: Container(
               width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.vertical(top: Radius.circular(50))),
+              decoration: BoxDecoration(color: Colors.red.shade400, borderRadius: BorderRadius.vertical(top: Radius.circular(50))),
               child: const Center(
                   child: Text(
                 "Developed By: Prajwol,\nShrawan & Samyak",

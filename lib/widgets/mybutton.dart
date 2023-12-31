@@ -34,6 +34,7 @@ class MyButton extends StatelessWidget {
           right: right ?? 0,
           bottom: bottom ?? 0),
       child: ElevatedButton(
+         style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.red)),
           onPressed: () {},
           child: Padding(
             padding: EdgeInsets.only(
@@ -43,7 +44,8 @@ class MyButton extends StatelessWidget {
                 bottom: textbottom ?? 0),
             child: Text(
               textlabel ?? "",
-              style: TextStyle(fontSize: fontsize ?? 0),
+              style: TextStyle(fontSize: fontsize ?? 0,color: Colors.white),
+
             ),
           )),
     );
