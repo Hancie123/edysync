@@ -1,48 +1,50 @@
 import 'package:edusync/model/loginModel.dart';
 import 'package:edusync/views/home/admin/adminSideNav.dart';
+import 'package:edusync/views/home/admin/viewClass.dart';
 import 'package:edusync/views/home/admin/createStudent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:get/get.dart';
 
 class adminDashboard extends StatelessWidget {
-  const adminDashboard({super.key, this.loginModel});
+   adminDashboard({super.key, this.loginModel});
   final LoginModel? loginModel;
 
   @override
   Widget build(BuildContext context) {
     var userData = loginModel?.data?.data;
-   
+
     return Scaffold(
-      drawer: adminSideNav(),
+      drawer: const adminSideNav(),
       appBar: AppBar(
-        title: Text('Admin Dashboard'),
+        title: const Text('Admin Dashboard'),
         elevation: 0,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.red.shade400,
       ),
       body: Column(
         children: [
           ClipPath(
             clipper: WaveClipperOne(),
             child: Container(
+              height: 80,
+              decoration:  BoxDecoration(
+                color: Colors.red.shade400,
+                // borderRadius:
+                //     BorderRadius.vertical(bottom: Radius.circular(20))
+              ),
               child: ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.person,
                   color: Colors.white,
                 ),
                 title: Text(
-                  'Welcome ${userData?.name??''}' ,
-                  style: TextStyle(color: const Color.fromARGB(255, 41, 39, 39)),
+                  'Welcome ${userData?.name ?? ''}',
+                  style: const TextStyle(color: Color.fromARGB(255, 41, 39, 39)),
                 ),
-              ),
-              height: 80,
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                // borderRadius:
-                //     BorderRadius.vertical(bottom: Radius.circular(20))
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
           Center(
@@ -57,11 +59,11 @@ class adminDashboard extends StatelessWidget {
                         children: [
                           Expanded(
                             child: GestureDetector(
-                              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStudentUI())),
-                              child: Card(
+                              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const CreateStudentUI())),
+                              child: const Card(
                                 margin: EdgeInsets.all(10),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(30.0),
+                                  padding: EdgeInsets.all(30.0),
                                   child: Column(
                                     children: [
                                       Icon(Icons.people),
@@ -77,13 +79,13 @@ class adminDashboard extends StatelessWidget {
                           ),
                           Expanded(
                             child: Card(
-                              margin: EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(10),
                               child: Padding(
                                 padding: const EdgeInsets.all(30.0),
                                 child: Column(
                                   children: [
-                                    Icon(Icons.person_3),
-                                    Text(
+                                    const Icon(Icons.person_3),
+                                    const Text(
                                       "Teachers",
                                       style: TextStyle(color: Colors.black),
                                     )
@@ -92,11 +94,11 @@ class adminDashboard extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Expanded(
+                          const Expanded(
                             child: Card(
                               margin: EdgeInsets.all(10),
                               child: Padding(
-                                padding: const EdgeInsets.all(30.0),
+                                padding: EdgeInsets.all(30.0),
                                 child: Column(
                                   children: [
                                     Icon(Icons.text_snippet_rounded),
@@ -113,11 +115,11 @@ class adminDashboard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Expanded(
+                          const Expanded(
                             child: Card(
                               margin: EdgeInsets.all(10),
                               child: Padding(
-                                padding: const EdgeInsets.all(30.0),
+                                padding: EdgeInsets.all(30.0),
                                 child: Column(
                                   children: [
                                     Icon(Icons.event),
@@ -132,11 +134,15 @@ class adminDashboard extends StatelessWidget {
                           ),
                           Expanded(
                             child: GestureDetector(
-                              onTap: () {},
-                              child: Card(
+                              onTap: () {
+
+                                
+                                Get.to(() => ViewClassUI(token: loginModel?.data?.token,));
+                              },
+                              child: const Card(
                                 margin: EdgeInsets.all(10),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(30.0),
+                                  padding: EdgeInsets.all(30.0),
                                   child: Column(
                                     children: [
                                       Icon(Icons.class_),
@@ -153,10 +159,10 @@ class adminDashboard extends StatelessWidget {
                           Expanded(
                             child: GestureDetector(
                                 onTap: () {},
-                                child: Card(
+                                child: const Card(
                                   margin: EdgeInsets.all(10),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(30.0),
+                                    padding: EdgeInsets.all(30.0),
                                     child: Column(
                                       children: [
                                         Icon(Icons.payments_outlined),

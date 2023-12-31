@@ -24,7 +24,7 @@ class LoginView extends StatelessWidget {
       try {
         var response = await dio.post('https://edusync.shrawanmaharjan.com.np/api/login', data: {'email': emailController.text.toString(), 'password': passwordController.text.toString()});
 
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200|| response.statusCode == 201) {
           var data = LoginModel.fromMap(response.data);
 
           var userData=data.data!.data;
