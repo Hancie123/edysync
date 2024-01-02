@@ -8,7 +8,9 @@ class StudentAnnouncement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: StudentDrawer(),
-      appBar: AppBar(title: Text("View Announcements")),
+      appBar: AppBar(title: Text("View Announcements",style: TextStyle(color: Colors.white),),
+       backgroundColor: Colors.red.shade400,
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 15),
         child: ListView.builder(

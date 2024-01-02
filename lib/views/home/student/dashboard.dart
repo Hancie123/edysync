@@ -25,11 +25,32 @@ class _MyStudentDashboardState extends State<MyStudentDashboard> {
     return Scaffold(
       drawer: StudentDrawer(),
       appBar: AppBar(
-        title: Text("EduSync"),
+        title: Text("EduSync",style: TextStyle(color: Colors.white),),
+         backgroundColor: Colors.red.shade400,
       ),
       body: Column(
         children: [
-          // Text("Welcome User"),
+          ClipPath(
+            clipper: WaveClipperOne(),
+            child: Container(
+              height: 80,
+              decoration: BoxDecoration(
+                color: Colors.red.shade400,
+                // borderRadius:
+                //     BorderRadius.vertical(bottom: Radius.circular(20))
+              ),
+              child: ListTile(
+                leading: const Icon(
+                  Icons.person,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  "Welcome",
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
           Container(
             width: MediaQuery.of(context).size.width,
             height: 200,
