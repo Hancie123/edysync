@@ -1,5 +1,6 @@
 import 'package:edusync/model/loginModel.dart';
 import 'package:edusync/views/home/admin/adminSideNav.dart';
+import 'package:edusync/views/home/admin/announcement.dart';
 import 'package:edusync/views/home/admin/viewClass.dart';
 import 'package:edusync/views/home/admin/createStudent.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class adminDashboard extends StatelessWidget {
     return Scaffold(
       drawer: const adminSideNav(),
       appBar: AppBar(
-        title: const Text('Admin Dashboard'),
+        title: const Text('Admin Dashboard',style: TextStyle(color: Colors.white),),
         elevation: 0,
         backgroundColor: Colors.red.shade400,
       ),
@@ -39,7 +40,7 @@ class adminDashboard extends StatelessWidget {
                 ),
                 title: Text(
                   'Welcome ${userData?.name ?? ''}',
-                  style: const TextStyle(color: Color.fromARGB(255, 41, 39, 39)),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
             ),
@@ -115,19 +116,26 @@ class adminDashboard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          const Expanded(
-                            child: Card(
-                              margin: EdgeInsets.all(10),
-                              child: Padding(
-                                padding: EdgeInsets.all(30.0),
-                                child: Column(
-                                  children: [
-                                    Icon(Icons.event),
-                                    Text(
-                                      "Events",
-                                      style: TextStyle(color: Colors.black),
-                                    )
-                                  ],
+                           Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.to(() => AnnouncementUI(
+                                      token: loginModel?.data?.token,
+                                    ));
+                              },
+                              child: Card(
+                                margin: EdgeInsets.all(10),
+                                child: Padding(
+                                  padding: EdgeInsets.all(30.0),
+                                  child: Column(
+                                    children: [
+                                      Icon(Icons.event),
+                                      Text(
+                                        "Events",
+                                        style: TextStyle(color: Colors.black),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
