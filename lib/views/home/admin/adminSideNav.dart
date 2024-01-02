@@ -1,5 +1,6 @@
 import 'package:edusync/views/home/admin/adminDashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 
 class adminSideNav extends StatelessWidget {
@@ -28,7 +29,7 @@ class adminSideNav extends StatelessWidget {
             leading: Icon(Icons.logout),
             title: Text("Exit"),
             onTap: () {
-              // SystemNavigator.pop();
+              SystemNavigator.pop();
             },
           )
         ],

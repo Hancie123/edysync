@@ -1,7 +1,11 @@
+import 'package:edusync/views/home/student/about.dart';
 import 'package:edusync/views/home/student/widgets/drawer.dart';
+import 'package:edusync/views/login/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:get/route_manager.dart';
 
 class StudentProfile extends StatelessWidget {
   const StudentProfile({super.key});
@@ -61,26 +65,30 @@ class StudentProfile extends StatelessWidget {
                 child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Padding(
-                      padding: const EdgeInsets.only(top: 120),
-                      child: Icon(Icons.pedal_bike,color: Colors.white,size: 30,),
-                    ),
+                    children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 120,left: 10),
+                        padding: const EdgeInsets.only(top: 120),
+                        child: Icon(
+                          Icons.account_box_outlined,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 120, left: 10),
                         child: GestureDetector(
                           onTap: () {
-                            
+                            Get.to(() => AboutPage());
                           },
                           child: Text(
                             "About",
-                            style: TextStyle(color: Colors.white, fontSize: 20,fontFamily: "Times New Roman"),
+                            style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: "Times New Roman"),
                           ),
                         ),
                       )
                     ],
                   ),
-
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
@@ -94,7 +102,15 @@ class StudentProfile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 15, left: 10),
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => LoginView(),
+                              ),
+                              (route) => false,
+                            );
+                          },
                           child: Text(
                             "Logout",
                             style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: "Times New Roman"),
@@ -103,8 +119,6 @@ class StudentProfile extends StatelessWidget {
                       )
                     ],
                   ),
-
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -119,7 +133,9 @@ class StudentProfile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 15, left: 10),
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            SystemNavigator.pop();
+                          },
                           child: Text(
                             "Exit",
                             style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: "Times New Roman"),

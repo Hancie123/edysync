@@ -9,6 +9,7 @@ class StudentDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      
       child: ListView(
         children: [
           Container(
@@ -28,7 +29,13 @@ class StudentDrawer extends StatelessWidget {
             leading: Icon(Icons.logout),
             title: Text("Logout"),
             onTap: () {
-              Get.to(() => LoginView());
+               Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => LoginView(),
+                ),
+                (route) => false,
+              );
             },
           ),
           ListTile(
