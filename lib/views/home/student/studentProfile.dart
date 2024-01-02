@@ -1,3 +1,4 @@
+import 'package:edusync/views/home/student/widgets/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ class StudentProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: StudentDrawer(),
       appBar: AppBar(title: Text("Profile")),
       body: Column(
         children: [

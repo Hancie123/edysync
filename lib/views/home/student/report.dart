@@ -1,3 +1,4 @@
+import 'package:edusync/views/home/student/widgets/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class MyReport extends StatelessWidget {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
+          drawer: StudentDrawer(),
           appBar: AppBar(
             backgroundColor: Colors.white,
             foregroundColor: Colors.black,

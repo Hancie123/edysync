@@ -1,3 +1,4 @@
+import 'package:edusync/views/home/student/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class StudentAnnouncement extends StatelessWidget {
@@ -6,6 +7,7 @@ class StudentAnnouncement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: StudentDrawer(),
       appBar: AppBar(title: Text("View Announcements")),
       body: Padding(
         padding: const EdgeInsets.only(top: 15),

@@ -2,6 +2,7 @@ import 'package:edusync/views/home/student/announcement.dart';
 import 'package:edusync/views/home/student/dashboard.dart';
 import 'package:edusync/views/home/student/report.dart';
 import 'package:edusync/views/home/student/studentProfile.dart';
+import 'package:edusync/views/home/student/widgets/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';

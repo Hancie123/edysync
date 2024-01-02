@@ -1,4 +1,5 @@
 import 'package:edusync/api/NewsApi/getNewsApi.dart';
+import 'package:edusync/views/home/student/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class MyStudentDashboard extends StatefulWidget {
@@ -20,6 +21,7 @@ class _MyStudentDashboardState extends State<MyStudentDashboard> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: StudentDrawer(),
       appBar: AppBar(
         title: Text("EduSync"),
       ),
