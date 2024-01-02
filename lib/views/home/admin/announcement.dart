@@ -74,13 +74,13 @@ class _AnnouncementUIState extends State<AnnouncementUI> {
     }
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    createStudentClass();
-    todayAnnouncement();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   createStudentClass();
+  //   todayAnnouncement();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

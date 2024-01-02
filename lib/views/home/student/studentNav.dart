@@ -19,7 +19,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
 
   final List<Widget> _pages = [
     MyStudentDashboard(),
-    StudentAnnouncement(),
+    StudentAnnouncementUI(),
     MyReport(),
     StudentProfile()
   ];
